@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Baby Name Tester</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Setup screen (first visit) -->
+    <div class="setup-screen" id="setup-screen">
+      <h1 class="setup-title">Baby Name Tester</h1>
+      <p class="setup-subtitle">Add your family members to get started</p>
+      <div class="setup-members" id="setup-members">
+        <div class="setup-member-row">
+          <input type="text" class="setup-input" placeholder="Full name (e.g. Jane Marie Smith)" maxlength="60" autocomplete="off" />
+          <button class="setup-remove" aria-label="Remove" type="button">&times;</button>
+        </div>
+      </div>
+      <button class="setup-add" id="setup-add" type="button">+ add family member</button>
+      <button class="setup-done" id="setup-done" type="button">Done</button>
+    </div>
+
+    <!-- Main app (hidden until setup complete) -->
+    <div class="top-bar hidden" id="top-bar">
+      <button class="manage-toggle" id="manage-toggle" aria-label="Manage name lists">manage names</button>
+
+      <div class="manage-panel hidden" id="manage-panel">
+        <!-- Family members section -->
+        <div class="manage-panel-row" id="panel-family-section">
+          <div class="name-list-section name-list-section--wide">
+            <h3 class="list-heading">Family Members</h3>
+            <div class="name-pills" id="family-pills"></div>
+            <form class="add-form" data-list="family">
+              <input type="text" placeholder="Add family member…" maxlength="60" autocomplete="off" />
+              <button type="submit" aria-label="Add family member">+</button>
+            </form>
+          </div>
+        </div>
+        <!-- Name candidate sections -->
+        <div class="manage-panel-row" id="panel-candidates-section">
+          <div class="name-list-section">
+            <h3 class="list-heading">First Names</h3>
+            <div class="name-pills" id="first-pills"></div>
+            <form class="add-form" data-list="first">
+              <input type="text" placeholder="Add first name…" maxlength="30" autocomplete="off" />
+              <button type="submit" aria-label="Add first name">+</button>
+            </form>
+          </div>
+          <div class="name-list-section">
+            <h3 class="list-heading">Middle Names</h3>
+            <div class="name-pills" id="middle-pills"></div>
+            <form class="add-form" data-list="middle">
+              <input type="text" placeholder="Add middle name…" maxlength="30" autocomplete="off" />
+              <button type="submit" aria-label="Add middle name">+</button>
+            </form>
+          </div>
+          <div class="name-list-section">
+            <h3 class="list-heading">Last Names</h3>
+            <div class="name-pills" id="last-pills"></div>
+            <form class="add-form" data-list="last">
+              <input type="text" placeholder="Add last name…" maxlength="30" autocomplete="off" />
+              <button type="submit" aria-label="Add last name">+</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app hidden" id="app">
+      <!-- Family header -->
+      <header class="family-header">
+        <p class="label" id="family-label"></p>
+        <div class="family-names" id="family-names"></div>
+      </header>
+
+      <!-- Baby name tester -->
+      <div class="baby-name" id="baby-name-row">
+        <span class="name-slot">
+          <button class="chevron down" data-slot="first" data-dir="-1" aria-label="Previous first name"><span class="chevron-icon">&#8250;</span></button>
+          <span class="name-part" id="first-name" data-slot="first" data-placeholder="first" role="button" tabindex="0"></span>
+          <button class="chevron down" data-slot="first" data-dir="1" aria-label="Next first name"><span class="chevron-icon">&#8249;</span></button>
+        </span>
+        <span class="name-slot">
+          <button class="chevron down" data-slot="middle" data-dir="-1" aria-label="Previous middle name"><span class="chevron-icon">&#8250;</span></button>
+          <span class="name-part" id="middle-name" data-slot="middle" data-placeholder="middle" role="button" tabindex="0"></span>
+          <button class="chevron down" data-slot="middle" data-dir="1" aria-label="Next middle name"><span class="chevron-icon">&#8249;</span></button>
+        </span>
+        <span class="name-slot">
+          <button class="chevron down" data-slot="last" data-dir="-1" aria-label="Previous last name"><span class="chevron-icon">&#8250;</span></button>
+          <span class="name-part" id="last-name" data-slot="last" data-placeholder="last" role="button" tabindex="0"></span>
+          <button class="chevron down" data-slot="last" data-dir="1" aria-label="Next last name"><span class="chevron-icon">&#8249;</span></button>
+        </span>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
