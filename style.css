@@ -312,6 +312,28 @@ body::after {
   background: rgba(139, 127, 168, 0.06);
 }
 
+.share-btn {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--text-light);
+  background: none;
+  border: 1.5px solid rgba(139, 127, 168, 0.2);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.5rem;
+}
+
+.share-btn:hover {
+  border-color: rgba(139, 127, 168, 0.45);
+  color: var(--text);
+}
+
 /* ── Manage panel ── */
 .manage-panel {
   margin-top: 0.8rem;

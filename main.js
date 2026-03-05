@@ -18,6 +18,33 @@ function saveData() {
   );
 }
 
+// ── Share via URL hash ──
+
+function importFromHash() {
+  const hash = window.location.hash;
+  if (!hash.startsWith("#data=")) return null;
+  try {
+    const b64 = hash.slice(6);
+    const json = atob(b64);
+    const parsed = JSON.parse(json);
+    if (parsed.familyMembers && parsed.candidates) return parsed;
+  } catch {}
+  return null;
+}
+
+function buildShareURL() {
+  const json = JSON.stringify({ familyMembers: data.familyMembers, candidates: data.candidates });
+  const b64 = btoa(json);
+  return `${window.location.origin}${window.location.pathname}#data=${b64}`;
+}
+
+const shared = importFromHash();
+if (shared) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(shared));
+  // Clean the hash so it doesn't re-import on reload
+  history.replaceState(null, "", window.location.pathname);
+}
+
 let data = loadData() || { familyMembers: [], candidates: { first: [], middle: [], last: [] } };
 
 const state = { first: 0, middle: 0, last: 0 };
@@ -394,6 +421,19 @@ function showApp() {
   toggle.addEventListener("click", () => {
     panel.classList.toggle("hidden");
     toggle.classList.toggle("active");
+  });
+
+  // Share button
+  const shareBtn = document.getElementById("share-btn");
+  shareBtn.addEventListener("click", async () => {
+    const url = buildShareURL();
+    try {
+      await navigator.clipboard.writeText(url);
+      shareBtn.textContent = "copied!";
+    } catch {
+      shareBtn.textContent = "error";
+    }
+    setTimeout(() => { shareBtn.textContent = "share"; }, 2000);
   });
 
   // Render initial pills

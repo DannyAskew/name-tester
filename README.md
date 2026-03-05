@@ -5,8 +5,11 @@ A simple app for cycling through baby name combinations and seeing how they look
 
 ## Features
 
-- Cycle through first and middle name candidates with chevron buttons
-- Manage your own lists of first and middle names
+- **Setup wizard** — enter your family members on first visit to get started
+- Cycle through first, middle, and last name candidates with chevron buttons or click to pick from a dropdown
+- Manage your own lists of first, middle, and last names
+- Edit family members anytime from the manage panel
+- **Share** — generates a URL that anyone can open to instantly load your family and name lists
 - Names are saved in `localStorage` so they persist between sessions
 - Displays the full family together so you can see how everything looks
 
