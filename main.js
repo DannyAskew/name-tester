@@ -40,7 +40,11 @@ function buildShareURL() {
 
 const shared = importFromHash();
 if (shared) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(shared));
+  const existing = loadData();
+  const shouldApply = !existing || confirm("This link contains a shared family setup. Replace your current data?");
+  if (shouldApply) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(shared));
+  }
   // Clean the hash so it doesn't re-import on reload
   history.replaceState(null, "", window.location.pathname);
 }
