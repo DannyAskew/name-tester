@@ -410,6 +410,22 @@ function showApp() {
     });
   });
 
+  // Swipe gestures on name slots for touch devices
+  document.querySelectorAll(".name-slot").forEach((slot) => {
+    let startY = 0;
+    slot.addEventListener("touchstart", (e) => {
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    slot.addEventListener("touchend", (e) => {
+      const endY = e.changedTouches[0].clientY;
+      const diff = startY - endY;
+      const slotKey = slot.querySelector(".name-part").dataset.slot;
+      if (Math.abs(diff) > 30) {
+        cycle(slotKey, diff > 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  });
+
   // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
     if (e.target.tagName === "INPUT" || e.target.classList.contains("name-part")) return;

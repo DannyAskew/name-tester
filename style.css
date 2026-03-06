@@ -156,6 +156,8 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
 }
 
 .name-slot .chevron.down {
@@ -170,6 +172,18 @@ body::after {
 .name-slot:hover .chevron {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Always show chevrons on touch devices (no hover capability) */
+@media (hover: none) {
+  .name-slot .chevron {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  .name-slot .chevron:active {
+    opacity: 1;
+    transform: scale(0.9);
+  }
 }
 
 .name-slot .chevron:hover {
@@ -459,12 +473,61 @@ body::after {
   :root {
     --name-size: 1.9rem;
   }
+  body {
+    padding: 1rem;
+  }
   .manage-panel-row {
     flex-direction: column;
     align-items: center;
   }
   .name-list-section--wide {
     max-width: 240px;
+  }
+  .baby-name {
+    flex-wrap: wrap;
+  }
+  .family-header {
+    margin-top: 2.5rem;
+  }
+  .top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .top-bar:has(.manage-panel:not(.hidden)) {
+    height: 100vh;
+    height: 100dvh;
+  }
+  .manage-toggle,
+  .share-btn {
+    flex: none;
+    margin-left: 0;
+  }
+  .manage-panel {
+    max-height: none;
+    flex: 1 1 100%;
+    width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --name-size: 1.6rem;
+  }
+  body {
+    padding: 0.75rem;
+  }
+  .label {
+    font-size: 1rem;
+  }
+  .manage-toggle,
+  .share-btn {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.8rem;
   }
 }
 
