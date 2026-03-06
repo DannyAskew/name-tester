@@ -20,11 +20,13 @@ body {
   font-family: "Caveat", cursive;
   background: white;
   color: var(--text);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  overflow: hidden;
 }
 
 body::after {
@@ -348,32 +350,30 @@ body::after {
   color: var(--text);
 }
 
-/* ── Manage panel ── */
+/* ── Manage panel (fixed overlay) ── */
 .manage-panel {
-  margin-top: 0.8rem;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(254, 249, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 3.5rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  align-items: center;
-  max-height: 400px;
-  opacity: 1;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
-}
-
-.manage-panel.hidden {
-  max-height: 0;
-  opacity: 0;
-  margin-top: 0;
+  align-items: stretch;
 }
 
 .name-list-section {
   flex: 1;
-  max-width: 240px;
+  max-width: 300px;
 }
 
 .list-heading {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-family: system-ui, -apple-system, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
@@ -393,8 +393,8 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.7rem;
-  font-size: 1.1rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 1.25rem;
   font-family: "Caveat", cursive;
   font-weight: 500;
   color: var(--text);
@@ -412,11 +412,16 @@ body::after {
 .pill .remove {
   background: none;
   border: none;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1;
   color: var(--text-light);
   cursor: pointer;
-  padding: 0;
+  padding: 0.2rem;
+  min-width: 28px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: system-ui, -apple-system, sans-serif;
   transition: color 0.15s ease;
 }
@@ -427,13 +432,13 @@ body::after {
 
 .add-form {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 .add-form input {
   flex: 1;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.9rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 1rem;
   font-family: "Caveat", cursive;
   border: 1.5px solid rgba(139, 127, 168, 0.2);
   border-radius: 12px;
@@ -448,19 +453,20 @@ body::after {
 }
 
 .add-form button {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border: 1.5px solid rgba(139, 127, 168, 0.2);
   border-radius: 50%;
   background: white;
   color: var(--text-light);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: system-ui, -apple-system, sans-serif;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .add-form button:hover {
@@ -481,7 +487,7 @@ body::after {
     align-items: center;
   }
   .name-list-section--wide {
-    max-width: 240px;
+    max-width: none;
   }
   .baby-name {
     flex-wrap: wrap;
@@ -491,26 +497,13 @@ body::after {
   }
   .top-bar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     gap: 0.4rem;
-  }
-  .top-bar:has(.manage-panel:not(.hidden)) {
-    height: 100vh;
-    height: 100dvh;
   }
   .manage-toggle,
   .share-btn {
     flex: none;
     margin-left: 0;
-  }
-  .manage-panel {
-    max-height: none;
-    flex: 1 1 100%;
-    width: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 1rem;
   }
 }
 
@@ -528,6 +521,10 @@ body::after {
   .share-btn {
     padding: 0.35rem 0.9rem;
     font-size: 0.8rem;
+  }
+  .name-list-section {
+    max-width: none;
+    width: 100%;
   }
 }
 
@@ -576,7 +573,7 @@ body::after {
 .setup-input {
   flex: 1;
   padding: 0.5rem 0.8rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: "Caveat", cursive;
   border: 1.5px solid rgba(139, 127, 168, 0.25);
   border-radius: 12px;

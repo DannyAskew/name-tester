@@ -413,17 +413,27 @@ function showApp() {
   // Swipe gestures on name slots for touch devices
   document.querySelectorAll(".name-slot").forEach((slot) => {
     let startY = 0;
+    let swiped = false;
     slot.addEventListener("touchstart", (e) => {
       startY = e.touches[0].clientY;
+      swiped = false;
+    }, { passive: true });
+    slot.addEventListener("touchmove", (e) => {
+      const diff = Math.abs(e.touches[0].clientY - startY);
+      if (diff > 10) swiped = true;
     }, { passive: true });
     slot.addEventListener("touchend", (e) => {
       const endY = e.changedTouches[0].clientY;
       const diff = startY - endY;
       const slotKey = slot.querySelector(".name-part").dataset.slot;
       if (Math.abs(diff) > 30) {
+        swiped = true;
         cycle(slotKey, diff > 0 ? 1 : -1);
       }
-    }, { passive: true });
+      if (swiped) {
+        e.preventDefault();
+      }
+    });
   });
 
   // Keyboard shortcuts
@@ -438,13 +448,31 @@ function showApp() {
   // Toggle panel
   const toggle = document.getElementById("manage-toggle");
   const panel = document.getElementById("manage-panel");
+  const shareBtn = document.getElementById("share-btn");
+
+  function openPanel() {
+    panel.classList.remove("hidden");
+    toggle.classList.add("active");
+    toggle.textContent = "done";
+    shareBtn.classList.add("hidden");
+  }
+
+  function closePanel() {
+    panel.classList.add("hidden");
+    toggle.classList.remove("active");
+    toggle.textContent = "edit names";
+    shareBtn.classList.remove("hidden");
+  }
+
   toggle.addEventListener("click", () => {
-    panel.classList.toggle("hidden");
-    toggle.classList.toggle("active");
+    if (panel.classList.contains("hidden")) {
+      openPanel();
+    } else {
+      closePanel();
+    }
   });
 
   // Share button
-  const shareBtn = document.getElementById("share-btn");
   shareBtn.addEventListener("click", async () => {
     const url = buildShareURL();
     try {

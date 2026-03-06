@@ -30,47 +30,47 @@
 
     <!-- Main app (hidden until setup complete) -->
     <div class="top-bar hidden" id="top-bar">
-      <button class="manage-toggle" id="manage-toggle" aria-label="Manage name lists">manage names</button>
+      <button class="manage-toggle" id="manage-toggle" aria-label="Edit name lists">edit names</button>
       <button class="share-btn" id="share-btn" aria-label="Share">share</button>
+    </div>
 
-      <div class="manage-panel hidden" id="manage-panel">
-        <!-- Family members section -->
-        <div class="manage-panel-row" id="panel-family-section">
-          <div class="name-list-section name-list-section--wide">
-            <h3 class="list-heading">Family Members</h3>
-            <div class="name-pills" id="family-pills"></div>
-            <form class="add-form" data-list="family">
-              <input type="text" placeholder="Add family member…" maxlength="60" autocomplete="off" />
-              <button type="submit" aria-label="Add family member">+</button>
-            </form>
-          </div>
+    <div class="manage-panel hidden" id="manage-panel">
+      <!-- Family members section -->
+      <div class="manage-panel-row" id="panel-family-section">
+        <div class="name-list-section name-list-section--wide">
+          <h3 class="list-heading">Family Members</h3>
+          <div class="name-pills" id="family-pills"></div>
+          <form class="add-form" data-list="family">
+            <input type="text" placeholder="Add family member…" maxlength="60" autocomplete="off" />
+            <button type="submit" aria-label="Add family member">+</button>
+          </form>
         </div>
-        <!-- Name candidate sections -->
-        <div class="manage-panel-row" id="panel-candidates-section">
-          <div class="name-list-section">
-            <h3 class="list-heading">First Names</h3>
-            <div class="name-pills" id="first-pills"></div>
-            <form class="add-form" data-list="first">
-              <input type="text" placeholder="Add first name…" maxlength="30" autocomplete="off" />
-              <button type="submit" aria-label="Add first name">+</button>
-            </form>
-          </div>
-          <div class="name-list-section">
-            <h3 class="list-heading">Middle Names</h3>
-            <div class="name-pills" id="middle-pills"></div>
-            <form class="add-form" data-list="middle">
-              <input type="text" placeholder="Add middle name…" maxlength="30" autocomplete="off" />
-              <button type="submit" aria-label="Add middle name">+</button>
-            </form>
-          </div>
-          <div class="name-list-section">
-            <h3 class="list-heading">Last Names</h3>
-            <div class="name-pills" id="last-pills"></div>
-            <form class="add-form" data-list="last">
-              <input type="text" placeholder="Add last name…" maxlength="30" autocomplete="off" />
-              <button type="submit" aria-label="Add last name">+</button>
-            </form>
-          </div>
+      </div>
+      <!-- Name candidate sections -->
+      <div class="manage-panel-row" id="panel-candidates-section">
+        <div class="name-list-section">
+          <h3 class="list-heading">First Names</h3>
+          <div class="name-pills" id="first-pills"></div>
+          <form class="add-form" data-list="first">
+            <input type="text" placeholder="Add first name…" maxlength="30" autocomplete="off" />
+            <button type="submit" aria-label="Add first name">+</button>
+          </form>
+        </div>
+        <div class="name-list-section">
+          <h3 class="list-heading">Middle Names</h3>
+          <div class="name-pills" id="middle-pills"></div>
+          <form class="add-form" data-list="middle">
+            <input type="text" placeholder="Add middle name…" maxlength="30" autocomplete="off" />
+            <button type="submit" aria-label="Add middle name">+</button>
+          </form>
+        </div>
+        <div class="name-list-section">
+          <h3 class="list-heading">Last Names</h3>
+          <div class="name-pills" id="last-pills"></div>
+          <form class="add-form" data-list="last">
+            <input type="text" placeholder="Add last name…" maxlength="30" autocomplete="off" />
+            <button type="submit" aria-label="Add last name">+</button>
+          </form>
         </div>
       </div>
     </div>
